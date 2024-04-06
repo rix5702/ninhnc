@@ -1,0 +1,1 @@
+<a href="?controller=user&action=login">dang nhap</a>
