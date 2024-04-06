@@ -2,12 +2,20 @@
 class detaiModel extends baseModel{
 
     public function getAll(){
-        $sql = "SELECT * FROM detainc";
+        $sql = "SELECT detainc.*, loaidetai.tenloai, giangvien.hogv, giangvien.tengv, trangthai.tentrangthai FROM detainc
+        INNER JOIN loaidetai ON detainc.loaidetai = loaidetai.idloaidetai
+        INNER JOIN giangvien ON detainc.giangvienhd = giangvien.idgv
+        INNER JOIN trangthai ON detainc.trangthai = trangthai.idtrangthai
+        ";
         $query = $this->_query($sql);
         return $query;
     }
-    public function pagedetainc($begin,$count){
-        $sql = "SELECT * FROM detainc ORDER BY iddetai DESC LIMIT $begin,$count";
+    public function pagedetai($begin,$count){
+        $sql = "SELECT detainc.*, loaidetai.tenloai, giangvien.hogv, giangvien.tengv, trangthai.tentrangthai FROM detainc
+        INNER JOIN loaidetai ON detainc.loaidetai = loaidetai.idloaidetai
+        INNER JOIN giangvien ON detainc.giangvienhd = giangvien.idgv
+        INNER JOIN trangthai ON detainc.trangthai = trangthai.idtrangthai
+        ORDER BY iddetai DESC LIMIT $begin,$count";
         $query = $this->_query($sql);
         return $query;
     }
@@ -28,7 +36,16 @@ class detaiModel extends baseModel{
         $query = $this->_query($sql);
         return $query;
     }
-
+    public function gettrangthai(){
+        $sql = "SELECT * FROM trangthai ";
+        $query = $this->_query($sql);
+        return $query;
+    }
+    public function getloai(){
+        $sql = "SELECT * FROM loaidetai ";
+        $query = $this->_query($sql);
+        return $query;
+    }
     public function delete($iddetai){
        $sql = "DELETE  FROM detainc WHERE iddetai = $iddetai";
        if(isset($_SESSION["username"]) && $_SESSION['role'] == 1){

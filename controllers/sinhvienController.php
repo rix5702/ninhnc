@@ -99,6 +99,45 @@ class sinhvienController extends baseController{
             'sinhvien'=> $sinhvien,
         ]);
     }
+    public function search(){
+        if(!isset($_SESSION["username"]) || $_SESSION['role'] != 1){
+            echo "<script>window.location.href='index.php?controller=home'</script>";
+        }   
+        $txtErro = '';
+        $txtSearch = '';
+        if(isset($_POST['search'])){
+            $search = $_POST['txtSearch'];
+            if($search == ""){
+                $txtErro = 'Vui lòng nhập từ khóa';
+            } else {
+                $array = explode(" ", $search);
+                $str = "";
+                foreach($array as $element){
+                    if(!empty($element)){
+                        $str .= "+". $element;
+                    }
+                }
+                $txtSearch = $this->sinhvienModel->searchSV($str);
+    
+                if($txtSearch !== false){ // Kiểm tra kết quả truy vấn
+                    $count = mysqli_num_rows($txtSearch);
+                    if($count <= 0){
+                        $txtErro = 'Không tìm thấy từ khóa : ' .$search;
+                    } else {
+                        $txtErro = 'Tìm được với từ khóa: ' . $search;
+                    }
+                } else {
+                    $txtErro = 'Đã xảy ra lỗi khi thực hiện truy vấn.';
+                }
+            }
+        }
+        return $this->loadview('sinhvien.search',[
+            'txtErro' => $txtErro,
+            'txtSearch' => $txtSearch,
+        ]);
+    }
+    
+    
    
    
 }

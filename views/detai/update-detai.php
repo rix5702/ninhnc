@@ -4,13 +4,13 @@
             <ol class="breadcrumb m-0">
                 <li class="breadcrumb-item"><a class="text-decoration-none" href="#">Trang chủ</a></li>
                 <li class="breadcrumb-item"><a class="text-decoration-none" href="admin.php?controller=nganh">Ngành</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Sửa thông tin đồ án</li>
+                <li class="breadcrumb-item active" aria-current="page">Sửa thông tin đề tài nghiên cứu</li>
             </ol>
         </nav>
     </div>
  </div>
 <?php 
-    while($da = mysqli_fetch_assoc($doan)):
+    while($dt = mysqli_fetch_assoc($detai)):
         
 ?>
 <form action="" method="POST">
@@ -18,22 +18,14 @@
     
             <div class="col-md-3">
                 <label  for="cars">Nhập tên đề tài đồ án:</label>
-                <input class="form-control" type="text" name="tendoan" value="<?php echo $da['tendoan'] ?>" aria-label="default input example">
-                <input type="hidden" name="iddoan" value="<?php echo $da['iddoan'] ?>">
+                <input class="form-control" type="text" name="tendetai" value="<?php echo $dt['tendetai'] ?>" aria-label="default input example">
+                <input type="hidden" name="iddetai" value="<?php echo $dt['iddetai'] ?>">
             </div>
             <div class="col-md-3">
-                <label  for="cars">Chọn ngành :</label>
-                <select  class="form-select"  id="nganh" name="nganh">
-                <?php while($ng = mysqli_fetch_array($allnganh)): ?>
-                    <option value="<?php echo $ng['idnganh'] ?>"><?php echo $ng['tennganh'] ?></option>
-                <?php endwhile; ?>
-                </select>
-            </div>
-            <div class="col-md-3">
-                <label  for="cars">Chọn loại đồ án :</label>
-                <select  class="form-select"  id="loaidoan" name="loaidoan">
+                <label  for="cars">Chọn loại đề tài :</label>
+                <select  class="form-select"  id="loaidetai" name="loaidetai">
                 <?php while($loai = mysqli_fetch_array($allloai)): ?>
-                    <option value="<?php echo $loai['idloaidoan'] ?>"><?php echo $loai['tenloai'] ?></option>
+                    <option value="<?php echo $loai['idloaidetai'] ?>"><?php echo $loai['tenloai'] ?></option>
                 <?php endwhile; ?>
                 </select>
             </div>
@@ -47,7 +39,7 @@
             </div>
             <div class="col-md-3">
                 <label  for="cars"> Thời gian thực hiện:</label>
-                <input class="form-control" type="date" name="thoigianth" value="<?php echo $da['thoigianth'] ?>" aria-label="default input example">
+                <input class="form-control" type="date" name="thoigianth" value="<?php echo $dt['thoigianth'] ?>" aria-label="default input example">
             </div>
         
             <div class="col-md-3">
@@ -60,10 +52,10 @@
             </div>
             <div class="col-md-3">
                 <label  for="cars"> Điểm:</label>
-                <input class="form-control" type="text" name="diemdoan" value="<?php echo $da['diemdoan'] ?>" aria-label="default input example">
+                <input class="form-control" type="text" name="diem" value="<?php echo $dt['diem'] ?>" aria-label="default input example">
             </div>
             <div class="col-md-3">
-                <button type="submit" name="suada" class="btn text-bg-primary">Cập nhật</button>
+                <button type="submit" name="suadetai" class="btn text-bg-primary">Cập nhật</button>
             </div>
     </div>
 </form>

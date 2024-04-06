@@ -85,7 +85,7 @@ class doanController extends baseController{
         if(isset($_GET['idda'])){
             $id = $_GET['idda'];
             $doan = $this->doanModel->getiddoan($id);
-            if(isset($_POST['suagv'])){
+            if(isset($_POST['suada'])){
                 $tendoan = $_POST['tendoan'];
                 $nganh = $_POST['nganh'];
                 $loaidoan = $_POST['loaidoan'];
@@ -103,6 +103,7 @@ class doanController extends baseController{
             'alltrangthai' => $alltrangthai,
             'allgv' => $allgv,
             'allnganh' => $allnganh,
+            'doan' => $doan
             
         ]);
     }

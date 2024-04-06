@@ -1,1 +1,6 @@
-<a href="?controller=user&action=login">dang nhap</a>
+<?php 
+    $this->loadview('menuHome',[
+        'nganh' => $nganh ?? []
+    ]);
+   
+?>

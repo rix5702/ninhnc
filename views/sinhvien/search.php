@@ -4,16 +4,24 @@
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb m-0">
                     <li class="breadcrumb-item"><a class="text-decoration-none" href="#">Trang chủ</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Danh sách sinh viên</li>
+                    <li class="breadcrumb-item active" aria-current="page"><a class="text-decoration-none" href="admin.php?controller=sinhvien">Danh sách sinh viên</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Tìm kiếm sinh viên</li>
                 </ol>
             </nav>
         </div>
     </div>
-    <!-- <form action="?controller=sinhvien&action=search" method="POST">
-    <input type="text" id="txtSearch" name="txtSearch" placeholder="Nhập tên hoặc MSSV">
-    <button name='search' type="submit">Tìm kiếm</button>
-    </form> -->
-
+    <div class="container bg-white mb-2 ">
+        <div class="col-md-4">
+            <h4>sinh viên tìm được</h4>
+        </div>
+    </div>
+    <p>
+        <?Php 
+            if(isset($txtErro) && ($txtErro !='')){
+                echo $txtErro;
+            }
+        ?>
+    </p>
     <table class="table table-light table-striped table-hover m-0">
         <thead>
             <tr>
@@ -31,7 +39,7 @@
         </thead>
         <?php  
                 $i = 1;
-                while($sinhvien = mysqli_fetch_array($pagesinhvien)): 
+                while($sinhvien = mysqli_fetch_array($txtSearch)): 
         ?>
         <tbody>
             <tr>

@@ -64,8 +64,8 @@ class sinhvienModel extends baseModel{
         }  
     }
     
-    public function searchNganh($str){
-        $sql = "SELECT * FROM nganh WHERE MATCH(tennganh) against('$str' IN BOOLEAN mode)";
+    public function searchSV($str){
+        $sql = "SELECT * FROM sinhvien MATCH(tensv) against('$str' IN BOOLEAN mode)";
         $query = $this->_query($sql);
         return $query;
     }
